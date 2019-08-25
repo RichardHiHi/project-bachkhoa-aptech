@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 25, 2019 7:33:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Strore.entity.Blog" table="blog" catalog="thanh" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="Strore.entity.User" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="250" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="250" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" not-null="true" />
+        </property>
+        <property name="thumbnail" type="string">
+            <column name="thumbnail" length="250" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="250" not-null="true" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createdDate" length="19" not-null="true" />
+        </property>
+        <property name="publishedDate" type="timestamp">
+            <column name="publishedDate" length="19" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="onDate" type="timestamp">
+            <column name="onDate" length="19" not-null="true" />
+        </property>
+        <property name="offDate" type="timestamp">
+            <column name="offDate" length="19" not-null="true" />
+        </property>
+        <property name="odering" type="int">
+            <column name="odering" not-null="true" />
+        </property>
+        <property name="nameOfWriter" type="string">
+            <column name="nameOfWriter" length="45" not-null="true" />
+        </property>
+        <set name="commentses" table="comments" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="blog_id" not-null="true" />
+            </key>
+            <one-to-many class="Strore.entity.Comments" />
+        </set>
+    </class>
+</hibernate-mapping>

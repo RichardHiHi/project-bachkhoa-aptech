@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 25, 2019 7:33:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Strore.entity.Orderdetail" table="orderdetail" catalog="thanh" optimistic-lock="version">
+        <composite-id name="id" class="Strore.entity.OrderdetailId">
+            <key-property name="productsId" type="int">
+                <column name="Products_id" />
+            </key-property>
+            <key-property name="orderId" type="int">
+                <column name="Order_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="order" class="Strore.entity.Order" update="false" insert="false" fetch="select">
+            <column name="Order_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="products" class="Strore.entity.Products" update="false" insert="false" fetch="select">
+            <column name="Products_id" not-null="true" />
+        </many-to-one>
+        <property name="total" type="string">
+            <column name="total" length="45" not-null="true" />
+        </property>
+        <property name="quantity" type="string">
+            <column name="quantity" length="45" not-null="true" />
+        </property>
+        <property name="amount" type="float">
+            <column name="amount" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

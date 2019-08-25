@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 25, 2019 7:33:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Strore.entity.Products" table="products" catalog="thanh" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="brand" class="Strore.entity.Brand" fetch="select">
+            <column name="Brand_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="category" class="Strore.entity.Category" fetch="select">
+            <column name="Category_id" not-null="true" />
+        </many-to-one>
+        <property name="codeId" type="string">
+            <column name="codeId" length="45" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="128" not-null="true" />
+        </property>
+        <property name="dateCreated" type="timestamp">
+            <column name="dateCreated" length="19" not-null="true" />
+        </property>
+        <property name="price" type="float">
+            <column name="price" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="quatity" type="int">
+            <column name="quatity" not-null="true" />
+        </property>
+        <property name="viewCount" type="int">
+            <column name="viewCount" not-null="true" />
+        </property>
+        <property name="hotSale" type="string">
+            <column name="hotSale" length="128" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="Image" length="128" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" not-null="true" />
+        </property>
+        <property name="imageList" type="string">
+            <column name="imageList" not-null="true" />
+        </property>
+        <property name="warranty" type="string">
+            <column name="warranty" length="45" not-null="true" />
+        </property>
+        <property name="productscol" type="string">
+            <column name="Productscol" length="45" not-null="true" />
+        </property>
+        <property name="voteOfStar" type="int">
+            <column name="voteOfStar" not-null="true" />
+        </property>
+        <set name="commentses" table="comments" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Products_id" not-null="true" />
+            </key>
+            <one-to-many class="Strore.entity.Comments" />
+        </set>
+        <set name="attributevalues" table="productsattributevalue" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Products_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="Strore.entity.Attributevalue">
+                <column name="attributeValue_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="orderdetails" table="orderdetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Products_id" not-null="true" />
+            </key>
+            <one-to-many class="Strore.entity.Orderdetail" />
+        </set>
+        <set name="users" table="wishlist" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Products_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="Strore.entity.User">
+                <column name="user_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

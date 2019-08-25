@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 25, 2019 7:33:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Strore.entity.Slides" table="slides" catalog="thanh" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="title1" type="string">
+            <column name="title1" length="45" not-null="true" />
+        </property>
+        <property name="title2" type="string">
+            <column name="title2" length="45" not-null="true" />
+        </property>
+        <property name="title3" type="string">
+            <column name="title3" length="45" not-null="true" />
+        </property>
+        <property name="content1" type="string">
+            <column name="content1" not-null="true" />
+        </property>
+        <property name="content2" type="string">
+            <column name="content2" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="45" not-null="true" />
+        </property>
+        <property name="nameOfButton" type="string">
+            <column name="nameOfButton" length="45" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
